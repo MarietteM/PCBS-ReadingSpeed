@@ -1,0 +1,11 @@
+Subject	Group	Text	Text_Type	Reading_Eye	Handedness	Eye_Dominancy	Age	Response_Time	Graded_Answer
+1	A	1	Nonfiction	Both	L	R	31	12.283805321902037	Correct
+1	A	2	Fiction	Both	L	R	31	13.44299551556469	Correct
+1	A	3	Nonfiction	Right	L	R	31	13.557724722806597	Correct
+1	A	4	Fiction	Right	L	R	31	36.905251521995524	Correct
+1	A	5	Nonfiction	Right	L	R	31	13.092464603862027	Correct
+1	A	6	Fiction	Right	L	R	31	19.077432570484234	Correct
+1	A	7	Nonfiction	Left	L	R	31	12.630597393377684	Correct
+1	A	8	Fiction	Left	L	R	31	19.072278609703062	Correct
+1	A	9	Nonfiction	Left	L	R	31	14.293683394556865	Correct
+1	A	10	Fiction	Left	L	R	31	10.704442657413892	Correct
