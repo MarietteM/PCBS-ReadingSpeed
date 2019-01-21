@@ -64,30 +64,33 @@ import random
 ## Function that runs experiment
 def Experimenter_cs(subject_id, group, handedness, eye_dominancy, age, gender, output_file):
     
-    ##Open Data file for recording subject's answers
+    ##Open Data file for recording subject's answers and reponse times
     datafile = open("Data/" + output_file + ".txt", "wb")
     writer = csv.writer(datafile, delimiter="\t")
     writer.writerow(['Subject', 'Group', 'Text', 'Text_Type', 'Reading_Eye', 'Handedness','Eye_Dominancy', 'Age', 'Gender' 'Response_Time', 'Graded_Answer'])
     
     
     
-    ## Present instructions
+    ## Present instructions to subject
     Instructions()
     
     ## Run through texts, take measurement, record data
     for i in range(10):
+        
+        ## Call run text function, gets back measurements for data file
         time_measurement, graded_answer, reading_eye = run_text(group, i)
         
-        ##Check if text is story or factual
+        ##Check if text is story or factual, even texts are fiction, odd texts are non-fiction
         if (i+1) % 2 == 0:
             text_type = "Fiction"
         else:
             text_type = "Nonfiction"
         
+        ## Record measurement and answer for text
         writer.writerow([subject_id, group, i+1, text_type, reading_eye, handedness, eye_dominancy, age, gender, time_measurement, graded_answer ])
 
     
-    ## Present end
+    ## Present end of experiment
     Finish()
     
 
@@ -144,9 +147,8 @@ def Instructions():
     init_msg.draw()
     win.flip()
     
-    #core.wait(1)
 
-## Function that runs the text
+## Function that runs the text and measures reading speed
 def run_text(group, text):
     
     texts = [
@@ -249,7 +251,7 @@ def run_text(group, text):
 
 ## Function that runs instructions
 def Finish():
-    #Provide instructions to subject
+    #Tells subject experiment is over
     init_msg = visual.TextStim(win, text="The experiment is over. Thank you for your participation.")
     init_msg.pos = (0,0)
     init_msg.draw()
@@ -261,32 +263,20 @@ def Finish():
 
 # Main Code Starts Here
 
-## Setup section, read experiment variable from file
+## Create window for experiment
 win = visual.Window([1370,760], monitor="testMonitor", fullscr = False)
 
-## Possible Experiment combinations and examples:
-## If you want to run a subject in Group A, Initials JG, Age 26, Male,
-## right handed, right eye dominance, you run:
-## Experimenter_cs("A", "JG_26_M_R_R")
-## If you want to run a subject in Group B, Intials AG, Age 32, Female
-## left handed, left eye dominance, you run:
-## Experimenter_CS("B", "AG_32_F_L_L")
-## The Formula is:
-## INITIALS_AGE_SEX_HANDEDNESS_EYEDOMINANCY
-
-
-# Runs Experiments
-
 ##Enter subject information
-subject_id = 04
-group = "B"
+subject_id = 00
+group = "A"
 handedness = "R"
 eye_dominancy = "R"
-age = 25
+age = 99
 gender = "M"
-output_file = "04_JY"
+output_file = "00_JG"
 
 
+##Call function to run experiment with subject informatio
 Experimenter_cs(subject_id, group, handedness, eye_dominancy, age, gender,  output_file);
 
 
