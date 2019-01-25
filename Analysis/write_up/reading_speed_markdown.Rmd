@@ -1,0 +1,149 @@
+---
+title: "Reading Speed Simulator Analysis"
+author: "Jonny Giordano"
+date: "January 24, 2019"
+output: html_document
+---
+
+```{r}
+load("reading_speed_environment.RData")
+```
+
+## Reading Speed Simulator
+
+A Reading Speed Simulator was built in R Version 3.2.3. The simulation was to model the effects of eye dominancy and native language, respective to the text, on reading speed. The simulation was based on a partially completed reading speed experiment. The intention of this analysis is to show that the parameter settings in the simulation can be retrieved, and to create a linear mixed model on the data.
+
+Effects on reading speeds were modeled with normal distributions in all cases except one, the effect caused by the prosthetic eye replacement.
+
+Native speakers were modeled as having an average reading speed of 250 words per minute (WPM), with a standard deviation (STD) of 12. Foreign speakers were modeled as having an average reading speed of 230 WPM, with a STD of 16. 
+
+Using only the dominant eye had an effect of reducing reading speed by an average of 3 WPM, with a STD of 0.75. Using only the weak eye reduced the reading speed by an average of 5 WPM, with a STD of 1. Using both eyes had no effect on reading speed. The prosthetic "enhancement" was modeled with an even distribution having effects on WPM from -7 to +5. 
+
+Based on the experiment leading to the simulation, texts were modeled on an even distribution containing 45 to 90 words. A text difficulty effect was added, being a normal distribution having no average effect on texts, but having a STD of 5 WPM.
+
+The simulation was carried out with 30 native and non-native subjects (60 total), and 15 texts. 
+
+The output for consideration in the experiment is the time in minutes used to read each text.
+
+
+Here is presentation of a portion of the final output of the simulation. The only data present are those that would be available to a researcher.
+
+```{r}
+head(data_figs)
+```
+
+## Figures
+
+Now the simulated data will be presented.
+
+Here is a boxplot demonstrating the average reading time between native and non-native readers while reading with both eyes. The reading condition for both eyes had no effect on the subjects reading speed. We observe that natives have a lower reading time, meaning they tend to read faster.
+
+```{r, fig.align='center'}
+language_box.plot
+```
+
+He we show the reading times based on the conditions of reading with the dominant or weak eye.
+
+```{r, fig.align='center'}
+eyes_box.plot
+```
+
+
+
+Next we show the reading times of foreign and native speakers, considering the factor of dominant and weak eyes. We see across the foreign vs native case that non-natives speakers have longer reading times. The dominant eye has a slightly lower reading time for both types of subjects.
+
+
+
+```{r, fig.align='center'}
+eye_native_box.plot
+```
+
+
+The diagram below shows the reading times by subject.
+
+```{r, fig.align='center'}
+subjects_box.plot
+```
+
+
+
+The diagram below shows the reading times per text. These measurements are from all subject, with both eyes.
+
+```{r, fig.align='center'}
+texts_box.plot
+```
+
+
+## Statistics
+
+There are two goals of this analysis. First, identify from the data some of the parameters used in the model. Second, create a linear mixed model with variables of native language (native vs non-native) and eye dominancy (dominant vs weak).
+
+The first step in the analysis was to filter the data set to include only dominant eye and weak eye conditions from the four possible eye conditions. Next we could begin with some summaries of the data. In the first chart below, we found the summarized data for native speakers. In the second chart, the summarized data for non-native speakers.
+
+```{r, fig.align='center'}
+summary_native.stats
+```
+
+```{r, fig.align='center'}
+summary_foreign.stats
+```
+
+Some math will help us to confirm that the two populations follow the average WPM set in the model.
+
+The Native readers had a mean reading time of 0.2683 minutes. Non-native readers took on average 0.2986. In both cases the average text came out to 65 words.
+
+Words Per Minute = Words / Minutes
+
+This gives Natives readers an average WPM = 242 compared with the models 250, and  Non-natives a WPM = 217 compared with the models 230. What can account for these differences? The models figures account for no effects, where as these numbers only account for cases of single eye use, both which carried WPM "penalties" in the simulation. So, though it may seem low, it would only be surprising if we had the models expected 250 WPM or higher.
+ 
+The next step is to create our linear mixed model.
+
+The formula as seen below: minutes ~ eye + language + (1 | subject_id) + (1 | text_id)
+
+Here we are predicting the reading time, denoted "minutes", by the fixed effects of "eye", which eye was used, and "language", if a subject is native or not. The random effects then are the subject shown by "subject_id" and the text, shown by "text_id".
+
+From the "Fixed Effects:" the model tells us two important things. First, going from the dominant eye to the week eye adds ~0.0028 minutes to the reading time. Second, being a native has an effect of decreasing the reading time by ~0.0302 minutes.
+
+```{r, fig.align='center'}
+summary(minutes.model)
+```
+
+Now we want to know if these two fixed effects of eye dominancy and language has any significant effect on the model. We can test this by creating null models that do not account for these variables and "assume" they do not make a difference. We can compare our complete model against these two null models using ANOVA.
+
+We create our first null model, excluding eye dominancy as a fixed effect, then use an ANOVA to test for signifiance between our first model.
+
+What we find is that eye dominancy had an effect on the reading time with a chi square = 175.68, or a p = 2.2e-16. 
+
+```{r, fig.align='center'}
+summary(minutes_null_eye.model)
+```
+```{r, fig.align='center'}
+anova(minutes.model, minutes_null_eye.model)
+```
+
+Next we create our null model, excluding language as a fixed effect and again test with an ANOVA.
+
+What we find is that language affected reading time with a chi square of 33.28 and a p = 7.981e-09. This is surprising because the eye dominancy, though having a smaller effect on the data, test with a higher signifiance (ie lower p value).
+
+
+```{r, fig.align='center'}
+summary(minutes_null_language.model)
+```
+```{r, fig.align='center'}
+anova(minutes.model, minutes_null_language.model)
+```
+
+To end the analysis, we will build a model with random slopes for eye dominancy. Below is the summary, followed by the list of coefficients. We see that there is consistency in the slopes, and that in each case the weak eye adds to the reading time.
+
+```{r, fig.align='center'}
+summary(minutes_random.model)
+```
+```{r, fig.align='center'}
+coef(minutes_random.model)
+```
+
+
+
+## Conclusion
+
+A Reading Speed Simulator was created in R with fixed parameters for eye dominancy and nativeness. Then a visual analysis was performed of the data, a simple statistics analysis, and a more advanced mixed model analysis. Last, we created a model with random slopes for eye dominancy. In conclusion, we found that the effects of both eye dominancy and nativeness are significant factors.

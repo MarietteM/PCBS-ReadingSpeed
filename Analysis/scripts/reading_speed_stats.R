@@ -1,19 +1,28 @@
+### Read in data ###
+source("scripts/Reading_Speed_Simulator.R")
+
 ### Load Packages ###
 library(lme4)
 library(dplyr)
 
 ### Read in Data ###
 data_stats = read.table("data/data.txt", header = T, sep='\t') %>%
-  filter(eye == "dominant_eye" | eye == "weak_eye")
+  filter(eye == "dominant_eye" | eye == "weak_eye") %>%
+  data.frame()
   
+### Gather Basic Stats ###
 
-# Things left to do
+summary_native.stats = summary(filter(data_stats, language == "native"))
+summary_native.stats
+summary_foreign.stats = summary(filter(data_stats, language == "foreign"))
+summary_foreign.stats
+
+# Possible things left to do
 # Check for linearity
 # Absence of Collinearity
 # Check for homoskedasticity
 # QQPlot
 # Influential Data Points
-
 
 
 ### Start Data Analysis ###
@@ -52,7 +61,7 @@ anova(minutes.model, minutes_null_language.model)
 coef(minutes.model)
 
 #Check a model with random slopes
-minutes.model = lmer(minutes ~ eye + language + (1+eye|subject_id) + (1+eye|text_id), 
+minutes_random.model = lmer(minutes ~ eye + language + (1+eye|subject_id) + (1+eye|text_id), 
                        data = data_stats, REML = FALSE)
 
-coef(minutes.model)
+coef(minutes_random.model)
