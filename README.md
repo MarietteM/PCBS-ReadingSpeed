@@ -1,6 +1,23 @@
 # Reading Speed
 Atelier Expérimentation Project for 2018/2019
 
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
+
+- [Reading Speed Experiment](#reading-speed-experiment)
+    - [Tools](#tools)
+    - [Experimental Program](#experimental-program)
+        - [Text](#text)
+        - [Main](#pseudowords)
+        - [Functions](#functions)
+    - [Experiment Run](#experiment-run)
+    - [R Simulation](#r-simulation)
+    - [R Analysis](#r-analysis)
+    - [CONCLUSION](#conclusion)
+        - [Final Remarks](#final-remarks)
+
+<!-- markdown-toc end -->
+
 ## Tools
 
 The tools used for this project are:
