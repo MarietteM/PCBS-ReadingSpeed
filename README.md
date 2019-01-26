@@ -56,11 +56,15 @@ R Toolboxs: "dplyr", "purrr", "ggplot2", and "reshape2"
 
 Because of the troubles running the experiment, a Reading Speed Simulation was created in R. This model took into account effects discovered while running the experiment and so was a more evolved form of it in some ways. Because of time constraints, it was simplified. For instance, the model has no variables to account for "Nonfiction" and "Fiction"  task, but it does have a parameter to account for text difficulty.
 
-The R code for the simulation can be found here:
+The R code for the simulation can be found in /master/Analysis/scripts as ["Reading_Speed_Simulator.R"](https://github.com/jvgiordano/PCBS-ReadingSpeed/blob/master/Analysis/scripts/Reading_Speed_Simulator.R) (or you can click the link)
 
 ## R Analysis
 
-The full R analysis can be found in the R markdown document here:
+The full R analysis can be found in the R markdown document can be found in master/Analysis/write_up as ["reading_speed_markdown.html"](https://github.com/jvgiordano/PCBS-ReadingSpeed/blob/master/Analysis/write_up/reading_speed_markdown.html) (or you can click the link).
+
+There is an alternative PDF version [here](https://github.com/jvgiordano/PCBS-ReadingSpeed/blob/master/Analysis/write_up/reading_speed_markdown.pdf)
+
+The data for the analysis can be found in master/Analysis/data [here.](https://github.com/jvgiordano/PCBS-ReadingSpeed/blob/master/Analysis/data/data.txt)
 
 
 ## Conclusion
