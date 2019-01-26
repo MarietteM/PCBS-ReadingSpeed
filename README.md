@@ -43,7 +43,7 @@ PscyhoPy Version 1.85.6 (the newest version should work)
 
 R Version 3.2.3
 
-R Toolboxs: "dplyr", "purrr", "ggplot2", and "reshape2"
+R Toolboxes: "dplyr", "purrr", "ggplot2", and "reshape2"
 
 ## Experimental Program
 
@@ -172,7 +172,7 @@ Programming Level - Intermediate
 
 Programming related learning - How to create a simulation, How to run a Linear Mixed Model in R, About Pages in Github, about Pandas in Python, About the "Reshape2" package and "melt" function for R, Using Github for a real project and not just a one time homework assignment
 
-Non-Programming related learning - Zipf's Law, Benford's law, How difficult it is to conduct an experiment (unaccounted for factors, unwanted subject behavior, lost data, etc.), The importance of backing up data (learned the hard-way, multiple times)
+Non-Programming related learning - Zipf's Law, Benford's law, How difficult it is to conduct an experiment (unaccounted for factors, unwanted subject behavior, lost data, etc.), The importance of backing up data (learned the hard-way multiple time, lost my ReadMe after it wall all written because I hadn't pulled locally and forced a push)
 
 Regarding the course: I was not a typical student, having taken Atelier d'Experimentation last year. One thing that hampered me was the difficulty in having internet, so often I could not access the Github in class, or access online materials to help me. Also, there were not enough outlets in the room for computers, and my PC could never last the entire class. It sounds silly but these are really important for a computer class.
 
