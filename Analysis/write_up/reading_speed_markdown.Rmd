@@ -2,7 +2,9 @@
 title: "Reading Speed Simulator Analysis"
 author: "Jonny Giordano"
 date: "January 24, 2019"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r}
@@ -13,7 +15,7 @@ load("reading_speed_environment.RData")
 
 A Reading Speed Simulator was built in R Version 3.2.3. The simulation was to model the effects of eye dominancy and native language, respective to the text, on reading speed. The simulation was based on a partially completed reading speed experiment. The intention of this analysis is to show that the parameter settings in the simulation can be retrieved, and to create a linear mixed model on the data.
 
-Effects on reading speeds were modeled with normal distributions in all cases except one, the effect caused by the prosthetic eye replacement.
+Effects on reading speeds were modeled with normal distributions in all cases except one, the effect caused by the prosthetic eye replacement. However, this case is not covered in this analysis.
 
 Native speakers were modeled as having an average reading speed of 250 words per minute (WPM), with a standard deviation (STD) of 12. Foreign speakers were modeled as having an average reading speed of 230 WPM, with a STD of 16. 
 
@@ -26,7 +28,7 @@ The simulation was carried out with 30 native and non-native subjects (60 total)
 The output for consideration in the experiment is the time in minutes used to read each text.
 
 
-Here is presentation of a portion of the final output of the simulation. The only data present are those that would be available to a researcher.
+Here is presentation of a portion of the final output of the simulation. The only data present are those that would be available to a researcher. The exception is that each subject was able to read each text in all conditions. In the real world having a subject reread text would most likely affect reading speed.
 
 ```{r}
 head(data_figs)
@@ -94,7 +96,7 @@ The Native readers had a mean reading time of 0.2683 minutes. Non-native readers
 
 Words Per Minute = Words / Minutes
 
-This gives Natives readers an average WPM = 242 compared with the models 250, and  Non-natives a WPM = 217 compared with the models 230. What can account for these differences? The models figures account for no effects, where as these numbers only account for cases of single eye use, both which carried WPM "penalties" in the simulation. So, though it may seem low, it would only be surprising if we had the models expected 250 WPM or higher.
+This gives Natives readers an average WPM = 242 compared with the models 250, and  Non-natives a WPM = 217 compared with the models 230. What can account for these differences? The models set parameters of 250 and 230 account for no effects, where as these numbers account for cases of single eye use, both which carried WPM "penalties" in the simulation. So, though it may seem low, it would only be surprising if we had the models expected 250 WPM or higher.
  
 The next step is to create our linear mixed model.
 
@@ -123,7 +125,7 @@ anova(minutes.model, minutes_null_eye.model)
 
 Next we create our null model, excluding language as a fixed effect and again test with an ANOVA.
 
-What we find is that language affected reading time with a chi square of 33.28 and a p = 7.981e-09. This is surprising because the eye dominancy, though having a smaller effect on the data, test with a higher signifiance (ie lower p value).
+What we find is that language affected reading time with a chi square of 33.28 and a p = 7.981e-09. This is surprising because the eye dominancy, though having a smaller effect on the data, test with a higher signifiance (ie lower p value). The reason for this might be because the effects between dominant and weak eye share less of a cross over due to small standard deviations, thereby acting as a weak, but seperative factor.
 
 
 ```{r, fig.align='center'}
