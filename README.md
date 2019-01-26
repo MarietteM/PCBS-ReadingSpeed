@@ -1,5 +1,8 @@
 # Reading Speed
-Atelier Expérimentation Project for 2018/2019
+
+PCBS Project 2018/2019
+
+The aim of this project was to create a Reading Speed experiment in PsychoPy and to run it on twenty subject and analyze the results. Due to issues in experimental implementation, a Reading Speed Simulator was built in R, and an analysis involving visualizations of the simulated data and the creation of a linear mixed model was carried out.
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
@@ -38,11 +41,13 @@ The tools used for this project are:
 
 PscyhoPy Version 1.85.6 (the newest version should work)
 
-R Version
+R Version 3.2.3
 
 R Toolboxs: "dplyr", "purrr", "ggplot2", and "reshape2"
 
 ## Experimental Program
+
+
 
 ### Text
 
@@ -51,6 +56,14 @@ R Toolboxs: "dplyr", "purrr", "ggplot2", and "reshape2"
 ### Functions
 
 ## Experiment Run
+
+Running the experiment proved to be more difficult than anticipated. Several problems were encountered concering the design and build of the experiment. The first of these were typos found by the subjects during the experiment which had an observable effect on the reading times for those trials. Even after all 8 subjects had completed the experiment, other typos were found, but it is unknown how these errors affected reading speed.  The second issue was that the questions, though designed to be simple and often did not require the reading of the text to answer, still received many wrong responses. This was most notable for non-native speakers. The questions failed here because they did not ensure the subjects read the questions, and at the same time, were too difficult for most subjects to answer completely correctly.
+
+Other issues with the experiment are related to subject behavior and conditions. I failed to take into account the effect being a native English speaker would have. Non-native speakers took far longer, and with apparent variability, to read the texts and answer the questions. Due to the initial group A and B design, the non-native speakers would have probably had an over influential role on the data and hidden any effects of eye dominancy. Second, subjects were not informed of the timed readings. They only knew about the questions and some became overly concerned with this aspect of the test. I was told by several subjects that they read the texts "three to four times" to ensure they would remember all the details and to have fully understood it. This of course greatly affects reading time.
+
+Last, there were some technical issues. 2 of the data sets were lost. They still have files associated with the subjects which can be found in the respository under subject initials of "PR" and "JY", but the files are empty. Initially I thought the cause was from shutting down the computer while the text file was still opened after reviewing it after an experiment. Later I determined the cause was by launching the experiment with the same subject initials, even if the experiment wasn't carried out. Just starting the experiment wiped the recorded information.
+
+Because of all of these issues, and time constaints, running the experiment was ended in lieu of creating a reading speed simulator in R.
 
 ## R Simulation
 
