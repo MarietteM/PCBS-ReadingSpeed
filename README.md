@@ -373,10 +373,10 @@ I'm pleasantly surprised with how much I learned from this class.
 
 There is extra material contained within the github respository. 
 
-(1) "/Images/Instructions.jpg" - This contains an image used to teach subjects how to determine their dominant eye. It was used in the experiment.
+(1) ["/Images/Instructions.jpg"](https://github.com/jvgiordano/PCBS-ReadingSpeed/blob/master/Images/Instructions.jpg) - This contains an image used to teach subjects how to determine their dominant eye. It was used in the experiment.
 
-(2) "/Data/Texts.docx" - A document with all texts used in the experimnet with corresponding position and group labels.
+(2) ["/Data/Texts.docx"](https://github.com/jvgiordano/PCBS-ReadingSpeed/blob/master/Data/Texts.docx) - A document with all texts used in the experimnet with corresponding position and group labels.
 
-(3) "/Data/Example_subject.txt" - Contains an examplary data file from a subject
+(3) ["/Data/Example_subject.txt"](https://github.com/jvgiordano/PCBS-ReadingSpeed/blob/master/Data/Example_Subject.txt) - Contains an examplary data file from a subject
 
-(4) "/Data/DataStructure.xlsx" - Excel sheet for the planned data structure for subject data
+(4) ["/Data/DataStructure.xlsx"](https://github.com/jvgiordano/PCBS-ReadingSpeed/blob/master/Data/DataStructure.xlsx) - Excel sheet for the planned data structure for subject data
