@@ -12,7 +12,7 @@ The aim of this project was to create a Reading Speed experiment in PsychoPy and
     - [Tools](#tools)
     - [Experimental Program](#experimental-program)
         - [Text](#text)
-        - [Main](#pseudowords)
+        - [Main](#main)
         - [Experimenter_cs](#experimenter_cs)
         - [Instructions](#instructions)
         - [run_text](#run_text)
