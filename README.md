@@ -47,17 +47,97 @@ R Toolboxs: "dplyr", "purrr", "ggplot2", and "reshape2"
 
 ## Experimental Program
 
+The experimental code can be found [here](https://github.com/jvgiordano/PCBS-ReadingSpeed/blob/master/Experiment_0_0_2.py)
 
+The program runs and experiment which attempts to measure the reading speeds of a subject based on three eye conditions. If the subject uses both eyes, their right eye or their left eye. The goal was to determine if there is a significant difference in reading speed between the left and right eye.
+ 
+ Subjects were broken into two groups, A and B. Texts would be shown to them based on the configuration in the chart below:
+ 
+     +--------------+-------------+-------------+
+    |              |           Group           |
+    +    Text      +---------------------------+
+    |              |   Group A   |   Group B   |
+    +--------------+-------------+-------------+
+    |  Text 1,2    |  Both Eyes  |  Both Eyes  |
+    +--------------+-------------+-------------+
+    |  Text 3,4    |  Right Eye  |  Right Eye  |
+    +--------------+-------------+-------------+
+    |  Text 5,6    |  Right Eye  |  Left Eye   |
+    +--------------+-------------+-------------+
+    |  Text 7,8    |  Left Eye   |  Left Eye   |
+    +--------------+-------------+-------------+
+    |  Text 9,10   |  Left Eye   |  Right Eye  |
+    +--------------+-------------+-------------+
+    
+This configuration was chosen so that base lines of reading speed could be measured across the two groups. This is the case for texts 1 and 2 where subjects used both eyes, texts 3 and 4, where subjects used their right eye and texts 7 and 8, where subjects used their left eye. Contrasting cases were text 5 and 6 and 9 and 10.
+    
+The experiment would run as follows:
+
+1. Researcher obtains from subject#       
+
+a. Initials
+
+b. Age
+
+c. Gender
+
+d. Handedness
+
+e. Eye Dominance
+
+and the researcher would give
+
+f. a subject ID
+
+g. a group (A or B)
 
 ### Text
 
+The ten exts were taken from the following sources. One may note the alternating fiction and non-fiction sources.
+
+1.Rivers by Nigel Holmes & Paul Raven, pg 51
+2.The Invention of Nature, Andrea Wulf pg 1
+3.Rivers, Pg 83
+4.The Book of Dust by Phillip Pullman, pg 4
+5.The Butterflies of Britain and Ireland by Jeremy Thomas pg 29
+6. The Book of Dust, pg 25
+7.The Butterflies of Britain and Ireland, pg 63 
+8.Dragon Teeth by Michael Crichton, pg 12
+9.Psychology by ,Roisberg pg 21
+10.Dragon Teeth, pg 6
+
+
 ### Main
+
+The main code is shown below. It consists of the opening of a window in PsychoPy, and the entering of all the subjects information, ending with the call of the "Experimenter_cs()" function, which launches the experiment.
+
+It is recommended to not run the experiment in full screen mode. PsychoPy has a tendency to freeze and there is no way to exit full screen mode (at least in Windows, even with task manager).
+
+    # Main Code Starts Here
+
+    ## Create window for experiment
+    win = visual.Window([1370,760], monitor="testMonitor", fullscr = False)
+
+    ##Enter subject information
+    subject_id = 00
+    group = "A"
+    handedness = "R"
+    eye_dominancy = "R"
+    age = 99
+    gender = "M"
+    output_file = "00_JG"
+
+
+    ##Call function to run experiment with subject informatio
+    Experimenter_cs(subject_id, group, handedness, eye_dominancy, age, gender,  output_file);
 
 ### Functions
 
+
+
 ## Experiment Run
 
-Running the experiment proved to be more difficult than anticipated. Several problems were encountered concering the design and build of the experiment. The first of these were typos found by the subjects during the experiment which had an observable effect on the reading times for those trials. Even after all 8 subjects had completed the experiment, other typos were found, but it is unknown how these errors affected reading speed.  The second issue was that the questions, though designed to be simple and often did not require the reading of the text to answer, still received many wrong responses. This was most notable for non-native speakers. The questions failed here because they did not ensure the subjects read the questions, and at the same time, were too difficult for most subjects to answer completely correctly.
+Running the experiment proved to be more difficult than anticipated. Several problems were encountered concering the design and build of the experiment. The first of these were typos found by the subjects during the experiment which had an observable effect on the reading times for those trials. Even after all 8 subjects had completed the experiment, other typos were found, but it is unknown how these errors affected reading speed.  The second issue was that the questions, though designed to be simple and often did not require the reading of the text to answer, still received many wrong responses. This was most notable for non-native speakers. The questions failed here because they did not ensure the subjects read the questions, and at the same time, were too difficult for most subjects to answer completely correctly. One last problem is that perhaps the experiment should have been divided in dominant eye and non-dominant eye as would be done in the simulation, instead of left eye versus right eye. The original goal was to determine if lateralization played an effect, and how eye dominancy affected this, but since most people are right eye dominant, it would be hard to determine dominancy effects from the small left eye dominant population.
 
 Other issues with the experiment are related to subject behavior and conditions. I failed to take into account the effect being a native English speaker would have. Non-native speakers took far longer, and with apparent variability, to read the texts and answer the questions. Due to the initial group A and B design, the non-native speakers would have probably had an over influential role on the data and hidden any effects of eye dominancy. Second, subjects were not informed of the timed readings. They only knew about the questions and some became overly concerned with this aspect of the test. I was told by several subjects that they read the texts "three to four times" to ensure they would remember all the details and to have fully understood it. This of course greatly affects reading time.
 
