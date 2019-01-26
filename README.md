@@ -14,10 +14,10 @@ The aim of this project was to create a Reading Speed experiment in PsychoPy and
         - [Text](#text)
         - [Main](#pseudowords)
         - [Functions](#functions)
-            -[Experimenter_cs](#experimenter_cs)
-            -[Instructions](#instructions)
-            -[run_text](#run_text)
-            -[Finish](#finish)
+                -[Experimenter_cs](#experimenter_cs)
+                -[Instructions](#instructions)
+                -[run_text](#run_text)
+                -[Finish](#finish)
     - [Experiment Run](#experiment-run)
     - [R Simulation](#r-simulation)
     - [R Analysis](#r-analysis)
@@ -223,9 +223,9 @@ run_text() is the function which (1) presents the specified text to the user, ba
 
 (1) Presents specified text (this is but a small portion due to length)
 
- texts = [
-    "1. Sewage and farmyard slurry cause serious river pollution, because faecal bacteria multiply rapidly and consume all the water's oxygen. Untreated sewage, often combined with industrial pollution, created a major health hazard in towns and cities and created hundreds of kilometers of fishless rivers in the 1950s.", 
-    "2. They were ----
+     texts = [
+        "1. Sewage and farmyard slurry cause serious river pollution, because faecal bacteria multiply rapidly and consume all the water's oxygen. Untreated sewage, often combined with industrial pollution, created a major health hazard in towns and cities and created hundreds of kilometers of fishless rivers in the 1950s.", 
+        "2. They were ----
 
 
 
