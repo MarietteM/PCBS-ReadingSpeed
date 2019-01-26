@@ -5,6 +5,7 @@ Atelier Expérimentation Project for 2018/2019
 **Table of Contents**
 
 - [Reading Speed Experiment](#reading-speed-experiment)
+    - [Repository Layout](#repository-layout)
     - [Tools](#tools)
     - [Experimental Program](#experimental-program)
         - [Text](#text)
@@ -18,6 +19,18 @@ Atelier Expérimentation Project for 2018/2019
         - [Extra Material](#extra-material)
 
 <!-- markdown-toc end -->
+
+## Repository Layout
+
+In this Github repository would will find the programs and documentation necessary to carry out the Reading Speed Experiment, Reading Speed Simulator, and Reading Speed Analysis.
+
+[Analysis](/master/Anlysis) Contains the Reading Speed Simulator and Analysis of the simulation
+
+[Data](/master/Data) Contains the data recorded while running the Reading Speed Experiment using PsychoPy
+
+[Images](/master/images) Contains an image used for instructing subjects
+
+[Experiment_0_0_2.py](/master/Experiment_0_0_2.py) is the experimental program that is run in PsychoPy
 
 ## Tools
 
