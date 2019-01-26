@@ -14,6 +14,10 @@ The aim of this project was to create a Reading Speed experiment in PsychoPy and
         - [Text](#text)
         - [Main](#pseudowords)
         - [Functions](#functions)
+            -[Experimenter_cs](#experimenter_cs)
+            -[Instructions](#instructions)
+            -[run_text](#run_text)
+            -[Finish](#finish)
     - [Experiment Run](#experiment-run)
     - [R Simulation](#r-simulation)
     - [R Analysis](#r-analysis)
@@ -96,14 +100,23 @@ g. a group (A or B)
 The ten exts were taken from the following sources. One may note the alternating fiction and non-fiction sources.
 
 1.Rivers by Nigel Holmes & Paul Raven, pg 51
+
 2.The Invention of Nature, Andrea Wulf pg 1
+
 3.Rivers, Pg 83
+
 4.The Book of Dust by Phillip Pullman, pg 4
+
 5.The Butterflies of Britain and Ireland by Jeremy Thomas pg 29
+
 6. The Book of Dust, pg 25
+
 7.The Butterflies of Britain and Ireland, pg 63 
+
 8.Dragon Teeth by Michael Crichton, pg 12
+
 9.Psychology by ,Roisberg pg 21
+
 10.Dragon Teeth, pg 6
 
 
@@ -132,6 +145,183 @@ It is recommended to not run the experiment in full screen mode. PsychoPy has a 
     Experimenter_cs(subject_id, group, handedness, eye_dominancy, age, gender,  output_file);
 
 ### Functions
+
+There are four functions that run the experiment "Experimenter_cs()", "Instructions()", "run_text()", and "Finish()".
+
+#### Experimenter_cs
+
+Experimenter_cs did the bulk of running the experiment. (1) It creates a data file recording all subject information in the /Data/ folder, titled by subjectID and their initials. (2) It runs the function Instructions() presenting instructions to the user (3) It runs through the run_text() function 10 times, once for each text to be presented, and records the reading time and answer corresponding to each text. It also checks if a text was fiction or non-fiction. Odd number texts were all fiction. (4) It runs Finish() which lets the subject know the experiment is over. 
+
+    ##Open Data file for recording subject's answers and reponse times
+    datafile = open("Data/" + output_file + ".txt", "wb")
+    writer = csv.writer(datafile, delimiter="\t")
+    writer.writerow(['Subject', 'Group', 'Text', 'Text_Type', 'Reading_Eye', 'Handedness','Eye_Dominancy', 'Age', 'Gender' 'Response_Time', 'Graded_Answer'])
+    
+    
+    
+    ## Present instructions to subject
+    Instructions()
+    
+    ## Run through texts, take measurement, record data
+    for i in range(10):
+        
+        ## Call run text function, gets back measurements for data file
+        time_measurement, graded_answer, reading_eye = run_text(group, i)
+        
+        ##Check if text is story or factual, even texts are fiction, odd texts are non-fiction
+        if (i+1) % 2 == 0:
+            text_type = "Fiction"
+        else:
+            text_type = "Nonfiction"
+        
+        ## Record measurement and answer for text
+        writer.writerow([subject_id, group, i+1, text_type, reading_eye, handedness, eye_dominancy, age, gender, time_measurement, graded_answer ])
+
+    
+    ## Present end of experiment
+    Finish()
+
+#### Instructions
+
+Only a portion of the Instructions() function is show below. The function presents the experiment to the subject, explains them the task, and how to proceed. It teaches them to proceed from texts by hitting the space bar, and to answer questions either using 'Y' or 'N' key to answer "yes" or "no" respectively. 
+
+Psychopy works something like a flash card. A message or picture is saved to a variable, in this case init_msg. This can than be positioned and "drawn". Refering to the flash card analogy it would be like placing our message on a certain section of the card, and drawing it on the back. This card equates to the screen. Then we "flip" this card, or "window" and our message that we drew is presented.
+
+    ## Function that runs instructions
+    def Instructions():
+    #Provide instructions to subject
+    init_msg = visual.TextStim(win, text="In this experiment you will be reading multiple texts and answering simple questions about them. Base your answers on the text. Before a text is presented, you will be told if you will read the text with both eyes, your right eye, or your left eye. If you understand, press the space bar to continue.")
+    init_msg.pos = (0,0)
+    init_msg.draw()
+    win.flip()
+    
+    #Get Response
+    c = event.waitKeys(keyList='space')
+    
+    #Provide more instructions to subject
+    init_msg = visual.TextStim(win, text="For single eye tasks, close the requested eye if possible, and cover it with your hand so you can not see out of it. If you understand, press the space bar to continue.")
+    init_msg.pos = (0,0)
+    init_msg.draw()
+    win.flip()
+    
+    #Get Response
+    c = event.waitKeys(keyList='space')
+    
+    #Provide more instructions to subject
+    init_msg = visual.TextStim(win, text="When you are done with reading the given text, hit the space bar to continue. All questions will be 'Yes' or 'No' questions, and will be answered with the 'Y' or 'N' keys respectively. If you understand, hit the 'Y' key for 'Yes'.")
+    init_msg.pos = (0,0)
+    init_msg.draw()
+    win.flip()
+    
+    #Get Response
+    c = event.waitKeys(keyList='y')
+
+
+#### run_text
+
+run_text() is the function which (1) presents the specified text to the user, based on the loop iteration, (2) determines based on the assigned group what eye(s) the subject should read with and alerts them, (3) captures the reading time using the core.getTime() function, and finally (4) asks the corresponding text question and receives the answer and grades it. Snapshots of these sections are presented below.
+
+(1) Presents specified text (this is but a small portion due to length)
+
+ texts = [
+    "1. Sewage and farmyard slurry cause serious river pollution, because faecal bacteria multiply rapidly and consume all the water's oxygen. Untreated sewage, often combined with industrial pollution, created a major health hazard in towns and cities and created hundreds of kilometers of fishless rivers in the 1950s.", 
+    "2. They were ----
+
+
+
+(2) Determine assigned group and instructions
+
+    if group == "A":
+            if text == 1 or text == 2:
+                eyes = "Read the following text with both eyes open."
+                reading_eye = "Both"
+            elif text == 3 or  text == 4 or text == 5 or text == 6:
+                eyes = "Read the following with only the RIGHT EYE. Cover your LEFT EYE."
+                reading_eye = "Right"
+            else:
+                eyes = "Read the following with only the LEFT EYE. Cover your RIGHT EYE."
+                reading_eye = "Left"
+        else:
+            if text == 1 or text == 2:
+                eyes = "Read the following text with both eyes open."
+                reading_eye = "Both"
+            elif text == 3 or text == 4 or text == 9 or text == 10:
+                eyes = "Read the following with only the RIGHT EYE. Cover your LEFT EYE."
+                reading_eye = "Right"
+            else:
+                eyes = "Read the following with only the LEFT EYE. Cover your RIGHT EYE."
+                reading_eye = "Left"
+            
+        
+    init_msg = visual.TextStim(win, text=eyes)
+    init_msg.pos = (0,0)
+    init_msg.draw()
+    win.flip()
+
+(3) Captures reading time
+
+    text = text - 1
+        init_msg = visual.TextStim(win, text=texts[text])
+        init_msg.pos = (0,0)
+        init_msg.draw()
+        win.flip()
+    
+    #Collect Start Time
+    start = core.getTime()
+    
+    #Get Response
+    c = event.waitKeys(keyList='space')
+    
+    #Collect End Time
+    end = core.getTime()
+    
+    measurement = end-start
+    
+
+(4) Asks questions and grades response
+
+    #Check reading comprehension
+    
+    questions =[
+    "1. Yes or No: Sewage can cause serious river pollution.", 
+    "2. Yes or No: The ridge was two inches wide in some places.", 
+    "3. Yes or No: Clear water means there is much sediment being moved.", 
+    "4. Yes or No: Malcom had to work around the tavern.", 
+    "5. Yes or No: The Large Skipper is a common butterfly in Mongolia.", 
+    "6. Yes or No: Malcom scraped off the green slime that had accumulated during the winter.", 
+    "7. Yes or No: Large White Butterfly caterpillars are destructive.", 
+    "8. Yes or No: Johnson saw men in tie-dye lab coats.", 
+    "9. Yes or No: Humans have been drinking alcohol for at most 1,000 years.", 
+    "10. Yes or No: Johnson claimed the scar on his upper lip was the result of an Eskimo attack." 
+    ]
+    
+    answers = ['y','y','n','y','n','y','y','n','n','n']
+    
+    init_msg = visual.TextStim(win, text=questions[text])
+    init_msg.pos = (0,0)
+    init_msg.draw()
+    win.flip()
+    
+    #Get Response
+    c = event.waitKeys(keyList=['y','n'])
+    
+    if c[0] == answers[text]:
+        grade = "Correct"
+    else:
+        grade = "Wrong"
+
+#### Finish
+
+Finish() tells the subject the experiment is over.
+
+    #Tells subject experiment is over
+    init_msg = visual.TextStim(win, text="The experiment is over. Thank you for your participation.")
+    init_msg.pos = (0,0)
+    init_msg.draw()
+    win.flip()
+    
+    #Get Response
+    c = event.waitKeys(keyList='space')
 
 
 
