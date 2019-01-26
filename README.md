@@ -13,11 +13,10 @@ The aim of this project was to create a Reading Speed experiment in PsychoPy and
     - [Experimental Program](#experimental-program)
         - [Text](#text)
         - [Main](#pseudowords)
-        - [Functions](#functions)
-             -[Experimenter_cs](#experimenter_cs)
-             -[Instructions](#instructions)
-             -[run_text](#run_text)
-             -[Finish](#finish)
+        - [Experimenter_cs](#experimenter_cs)
+        - [Instructions](#instructions)
+        - [run_text](#run_text)
+        - [Finish](#finish)
     - [Experiment Run](#experiment-run)
     - [R Simulation](#r-simulation)
     - [R Analysis](#r-analysis)
@@ -143,12 +142,10 @@ It is recommended to not run the experiment in full screen mode. PsychoPy has a 
 
     ##Call function to run experiment with subject informatio
     Experimenter_cs(subject_id, group, handedness, eye_dominancy, age, gender,  output_file);
+    
+There are four functions that run the experiment "Experimenter_cs()", "Instructions()", "run_text()", and "Finish()". They are discussed below.
 
-### Functions
-
-There are four functions that run the experiment "Experimenter_cs()", "Instructions()", "run_text()", and "Finish()".
-
-#### Experimenter_cs
+### Experimenter_cs
 
 Experimenter_cs did the bulk of running the experiment. (1) It creates a data file recording all subject information in the /Data/ folder, titled by subjectID and their initials. (2) It runs the function Instructions() presenting instructions to the user (3) It runs through the run_text() function 10 times, once for each text to be presented, and records the reading time and answer corresponding to each text. It also checks if a text was fiction or non-fiction. Odd number texts were all fiction. (4) It runs Finish() which lets the subject know the experiment is over. 
 
@@ -181,7 +178,7 @@ Experimenter_cs did the bulk of running the experiment. (1) It creates a data fi
     ## Present end of experiment
     Finish()
 
-#### Instructions
+### Instructions
 
 Only a portion of the Instructions() function is show below. The function presents the experiment to the subject, explains them the task, and how to proceed. It teaches them to proceed from texts by hitting the space bar, and to answer questions either using 'Y' or 'N' key to answer "yes" or "no" respectively. 
 
@@ -217,7 +214,7 @@ Psychopy works something like a flash card. A message or picture is saved to a v
     c = event.waitKeys(keyList='y')
 
 
-#### run_text
+### run_text
 
 run_text() is the function which (1) presents the specified text to the user, based on the loop iteration, (2) determines based on the assigned group what eye(s) the subject should read with and alerts them, (3) captures the reading time using the core.getTime() function, and finally (4) asks the corresponding text question and receives the answer and grades it. Snapshots of these sections are presented below.
 
@@ -310,7 +307,7 @@ run_text() is the function which (1) presents the specified text to the user, ba
     else:
         grade = "Wrong"
 
-#### Finish
+### Finish
 
 Finish() tells the subject the experiment is over.
 
