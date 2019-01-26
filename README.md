@@ -340,7 +340,7 @@ The R code for the simulation can be found in /master/Analysis/scripts as ["Read
 
 ## R Analysis
 
-The full R analysis can be found in the R markdown document can be found in master/Analysis/write_up as ["reading_speed_markdown.html"](https://github.com/jvgiordano/PCBS-ReadingSpeed/blob/master/reading_speed_markdown.Rmd) (or you can click the link).
+The full R analysis can be found in the R markdown document can be found in master/Analysis/write_up as ["reading_speed_markdown.html"](https://github.com/jvgiordano/PCBS-ReadingSpeed/blob/master/Analysis/write_up/reading_speed_markdown.html) (or you can click the link).
 
 There is an alternative PDF version [here](https://github.com/jvgiordano/PCBS-ReadingSpeed/blob/master/Analysis/write_up/reading_speed_markdown.pdf)
 
